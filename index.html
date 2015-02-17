@@ -10,24 +10,24 @@
 
     <!-- CHAT MARKUP -->
     <div class='example-chat l-demo-container'>
-      <header>Firebase Chat Demo</header>
-
-      <div class='example-chat-toolbar'>
-        <label for='nameInput'>Username:</label>
-        <input ng-model='name' type='text' id='nameInput' placeholder='enter a username...'>
-      </div>
-
+      <header>Huisrooster St. Annastraat 103a</header>
         
-      <ul id='example-messages' class='example-chat-messages'>
-        <li ng-repeat='msg in messages'>
-          <strong class='example-chat-username'>{{msg.huisgenoot}}</strong>
-          {{msg.taak}}{{msg.beforeDate}} COMMENT: {{msg.comment}} <input type="text" ng-model="msg.comment" ng-keydown="testFeedback($event)">
-        </li>
-      </ul>
-
-      <footer>
-        <input ng-model='msg' ng-keydown="addMessage($event)" type='text' id='messageInput'  placeholder='Type a message...'>
-      </footer>
+<table id='example-messages' class='example-chat-messages'>
+    <td>Startdatum</td>
+    <td>Einddatum</td>
+    <td>Huisgenoott</td>
+    <td>Taak</td>
+    <td>Commentaar</td>
+    <td>Gedaan op?</td>
+  <tr ng-repeat="msg in messages">
+    <td>{{msg.date}}</td>
+    <td>{{msg.beforeDate}}</td>
+    <td>{{msg.huisgenoot}}</td>
+    <td>{{msg.taak}}</td>
+    <td>{{msg.comment}}</td>
+      <td><input type="text" ng-model="msg.comment" ng-keydown="testFeedback($event)"></td>
+  </tr>
+</table>
     </div>
 
     <script>
