@@ -4,14 +4,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js"></script>
+      
+      <style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
   </head>
 
   <body ng-controller="MyController">
 
     <!-- CHAT MARKUP -->
     <div class='example-chat l-demo-container'>
-      <header>Huisrooster St. Annastraat 103a</header>
-        
+      <h1>Huisrooster St. Annastraat 103a</h1>
+        <h2>Beschrijving taken</h2>
+        <p>Hier komt nog een beschrijving over wat alles is en doet</p>
+        <h2>Rooster</h2>
 <table id='example-messages' class='example-chat-messages'>
     <td>Startdatum</td>
     <td>Einddatum</td>
@@ -47,26 +55,7 @@
           // GET MESSAGES AS AN ARRAY
           $scope.messages = $firebase(ref).$asArray();
 
-          //ADD MESSAGE METHOD
-          $scope.addMessage = function(e) {
-
-            //LISTEN FOR RETURN KEY
-            if (e.keyCode === 13 && $scope.msg) {
-              //ALLOW CUSTOM OR ANONYMOUS USER NAMES
-              var name = $scope.name || 'anonymous';
-
-              //ADD TO FIREBASE
-              $scope.messages.$add({
-                from: name,
-                body: $scope.msg,
-                  something:"hello"
-                  
-              });
-
-              //RESET MESSAGE
-              $scope.msg = "";
-            }
-          }
+         
           
           // Testing feedback function
            $scope.testFeedback = function(e, msg) {

@@ -5,7 +5,7 @@ import csv
 from firebase import firebase
 firebase = firebase.FirebaseApplication('https://roosterstanna.firebaseio.com',None)
 
-huisgenoten = ["Githe","Jean-Marc","Mats","Marinthe","Wes","Bob","Gerdi", "Roland"]
+huisgenoten = ["Gitte","Jean-Marc","Mats","Marinthe","Wes","Bob","Gerdi", "Roland"]
 wekelijkseTaken = ["Keuken","Toilet","Douche","Vuilnis(zie Dar)"]
 maandelijkseTaken = ["Glas wegbrengen","Vloer gang","Vloer keuken"]
 onmogelijkeCombinaties = {"Marinthe":"Keuken", "Marinthe":"Vuilnis(zie Dar)"}
@@ -37,18 +37,18 @@ def findHuisgenootPerTaak(taken,huisgenoten, date):
 
 
 
-today = datetime.date(2014, 12, 22)
+today = datetime.date(2015, 3, 2)
 toAdd = datetime.timedelta(days=7)
 
 random.seed(0)
-for weeknummer in range(0,10):
+for weeknummer in range(0,30):
     amountToShuffle = 3
     
     firstpart = huisgenoten[1:1+amountToShuffle]
     random.shuffle(firstpart)
     huisgenoten[1:1+amountToShuffle]= firstpart
     findHuisgenootPerTaak(wekelijkseTaken, huisgenoten, today)
-    if weeknummer%4==0:
+    if weeknummer%4==3:
         findHuisgenootPerTaak(maandelijkseTaken, huisgenoten, today)
     today = today + toAdd
         
