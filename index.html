@@ -1,31 +1,74 @@
-<html>
+<!doctype html>
+<html ng-app="myApp">
   <head>
-    <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-    <script src='app.js'></script>
-      <style>
-table {
-  border-collapse: collapse;
-    border-left-style:solid;
-    border-right-style:solid;
-}
-          th {
-    background-color: green;
-    color: white;
-}
-          td{
-           border-right-style:solid;
-          }
-tr { 
-  border: solid;
-  border-width: 1px 0;
-}
-</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js"></script>
   </head>
-  <body>
-    <table id="cakes" border=1 frame=void rules=rows>
-        <tr><td> start datum</td><td>before </td><td> Persoon</td><td>taak</td></tr>
 
+  <body ng-controller="MyController">
+
+    <!-- CHAT MARKUP -->
+    <div class='example-chat l-demo-container'>
+      <header>Firebase Chat Demo</header>
+
+      <div class='example-chat-toolbar'>
+        <label for='nameInput'>Username:</label>
+        <input ng-model='name' type='text' id='nameInput' placeholder='enter a username...'>
+      </div>
+
+        
+      <ul id='example-messages' class='example-chat-messages'>
+        <li ng-repeat='msg in messages'>
+          <strong class='example-chat-username'>{{msg.huisgenoot}}</strong>
+          {{msg.taak}}{{msg.beforeDate}} COMMENT: {{msg.comment}} <input type="text" ng-model="msg.comment" ng-keydown="testFeedback($event)">
+        </li>
+      </ul>
+
+      <footer>
+        <input ng-model='msg' ng-keydown="addMessage($event)" type='text' id='messageInput'  placeholder='Type a message...'>
+      </footer>
+    </div>
+
+    <script>
+      var myApp = angular.module("myApp", ["firebase"]);
+
+      myApp.controller('MyController', ['$scope', '$firebase',
+        function($scope, $firebase) {
+          //CREATE A FIREBASE REFERENCE
+          var ref = new Firebase("https://roosterstanna.firebaseio.com/taken");
+
+          // GET MESSAGES AS AN ARRAY
+          $scope.messages = $firebase(ref).$asArray();
+
+          //ADD MESSAGE METHOD
+          $scope.addMessage = function(e) {
+
+            //LISTEN FOR RETURN KEY
+            if (e.keyCode === 13 && $scope.msg) {
+              //ALLOW CUSTOM OR ANONYMOUS USER NAMES
+              var name = $scope.name || 'anonymous';
+
+              //ADD TO FIREBASE
+              $scope.messages.$add({
+                from: name,
+                body: $scope.msg,
+                  something:"hello"
+                  
+              });
+
+              //RESET MESSAGE
+              $scope.msg = "";
+            }
+          }
+          
+          // Testing feedback function
+           $scope.testFeedback = function(e) {
+                console.log("Pressed: " + e.keyCode);
+            
+          }
+        }
+      ]);
+    </script>
   </body>
 </html>
