@@ -5,10 +5,10 @@ import csv
 from firebase import firebase
 firebase = firebase.FirebaseApplication('https://roosterstanna.firebaseio.com',None)
 
-huisgenoten = ["Githe","Jean-Marc","Mats","Marinthe","Wes","Bob","Kamer 4", "Roland"]
-wekelijkseTaken = ["Keuken","Toilet","Douche","Vuilnis buitenzetten"]
+huisgenoten = ["Githe","Jean-Marc","Mats","Marinthe","Wes","Bob","Gerdi", "Roland"]
+wekelijkseTaken = ["Keuken","Toilet","Douche","Vuilnis(zie Dar)"]
 maandelijkseTaken = ["Glas wegbrengen","Vloer gang","Vloer keuken"]
-onmogelijkeCombinaties = {"Marinthe":"Keuken"}
+onmogelijkeCombinaties = {"Marinthe":"Keuken", "Marinthe":"Vuilnis(zie Dar)"}
 
 
 csvfile = open('huisrooster2.csv', 'wb')
