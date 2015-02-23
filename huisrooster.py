@@ -20,6 +20,10 @@ def getHuisgenootVoorTaak(taak, huisgenoten):
     huisgenoot = huisgenoten[0]
     if taak=="Keuken" and huisgenoot == "Marinthe":
         return (huisgenoten[1],1)
+    if taak=="Vuilnis(zie Dar)" and huisgenoot == "Marinthe":
+        return (huisgenoten[1],1)
+    if taak=="Vloer keuken" and huisgenoot == "Marinthe":
+        return (huisgenoten[1],1)
     return (huisgenoot,0)
 
 def saveHuisgenoot(date,beforeDate,taak,huisgenoot):
@@ -40,7 +44,7 @@ def findHuisgenootPerTaak(taken,huisgenoten, date):
 today = datetime.date(2015, 3, 2)
 toAdd = datetime.timedelta(days=7)
 
-random.seed(0)
+random.seed(1)
 for weeknummer in range(0,30):
     amountToShuffle = 3
     
