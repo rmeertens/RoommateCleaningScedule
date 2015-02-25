@@ -28,6 +28,7 @@ def getHuisgenootVoorTaak(taak, huisgenoten):
 
 def saveHuisgenoot(date,beforeDate,taak,huisgenoot):
     print str(date) + "," +str(beforeDate) + "," + taak + "," + huisgenoot
+    print today.strftime('We are the %d, %b %Y')
     spamwriter.writerow([date, beforeDate, taak,huisgenoot])
     new_user = {'name':huisgenoot,'date':date,'beforeDate':beforeDate,'taak':taak,'huisgenoot':huisgenoot}
     result = firebase.post('/taken',new_user)
