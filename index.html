@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html ng-app="myApp">
   <head>
@@ -10,11 +9,6 @@
 table, th, td {
     border: 1px solid black;
 }
-          #sidebar1 {
-float:right;
-width:250px;
-
-}
 </style>
   </head>
 
@@ -24,18 +18,9 @@ width:250px;
     <div class='example-chat l-demo-container'>
       <h1>Huisrooster St. Annastraat 103a</h1>
         <h2>Beschrijving taken</h2>
-        <p>Hier komt nog een beschrijving over wat alles is en doet...</p>
+        <p>Hier komt nog een beschrijving over wat alles is en doet</p>
         <h2>Rooster</h2>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<div id="sidebar1"><ins class="adsbygoogle"
-     style="display:inline-block;width:300px;height:600px"
-     data-ad-client="ca-pub-9935903721620870"
-     data-ad-slot="1133464344"></ins></div>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-        <table id='example-messages' class='example-chat-messages'>
+<table id='example-messages' class='example-chat-messages'>
     <td>Startdatum</td>
     <td>Einddatum</td>
     <td>Huisgenoot</td>
@@ -52,12 +37,13 @@ width:250px;
     <td>{{msg.datePerformed}}</td>
       
     
-      <td><input type="text" ng-keydown="testFeedback($event, msg)"></td>
+      <td><input type="text" ng-model="msg.datePerformed" ng-keydown="testFeedback($event, msg)"></td>
       <td>{{msg.comments}}</td>
-      <td><input type="text" ng-keydown="saveComment($event, msg)"></td>
+      <td><input type="text" ng-model="msg.comments" ng-keydown="saveComment($event, msg)"></td>
   </tr>
 </table>
     </div>
+
     <script>
       var myApp = angular.module("myApp", ["firebase"]);
 
@@ -74,16 +60,16 @@ width:250px;
           // Testing feedback function
            $scope.testFeedback = function(e, msg) {
                //LISTEN FOR RETURN KEY
-          //  if (e.keyCode === 13) {
+            if (e.keyCode === 13) {
                    $scope.messages.$save(msg);
-          //  }
+            }
 
             
           }
            $scope.saveComment= function(e, msg) {
-            //   if (e.keyCode === 13) {
+               if (e.keyCode === 13) {
                    $scope.messages.$save(msg);
-             //  }
+               }
           }
         }
       ]);
