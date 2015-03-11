@@ -24,7 +24,7 @@ width:250px;
     <div class='example-chat l-demo-container'>
       <h1>Huisrooster St. Annastraat 103a</h1>
         <h2>Beschrijving taken</h2>
-        <p>Hier komt nog een beschrijving over wat alles is en doet</p>
+        <p>Hier komt nog een beschrijving over wat alles is en doet...</p>
         <h2>Rooster</h2>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <div id="sidebar1"><ins class="adsbygoogle"
@@ -74,16 +74,16 @@ width:250px;
           // Testing feedback function
            $scope.testFeedback = function(e, msg) {
                //LISTEN FOR RETURN KEY
-            if (e.keyCode === 13) {
+          //  if (e.keyCode === 13) {
                    $scope.messages.$save(msg);
-            }
+          //  }
 
             
           }
            $scope.saveComment= function(e, msg) {
-               if (e.keyCode === 13) {
+            //   if (e.keyCode === 13) {
                    $scope.messages.$save(msg);
-               }
+             //  }
           }
         }
       ]);
