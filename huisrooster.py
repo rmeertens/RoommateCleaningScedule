@@ -3,12 +3,11 @@ import datetime
 import random
 import csv
 from firebase import firebase
-firebase = firebase.FirebaseApplication('https://roosterstanna.firebaseio.com',None)
+firebase = firebase.FirebaseApplication('https://singelstraat13.firebaseio.com',None)
 
-huisgenoten = ["Gitte","Jean-Marc","Mats","Marinthe","Wes","Bob","Gerdi", "Roland"]
-wekelijkseTaken = ["Keuken","Toilet","Douche","Vuilnis(zie Dar)"]
-maandelijkseTaken = ["Glas wegbrengen","Vloer gang","Vloer keuken"]
-onmogelijkeCombinaties = {"Marinthe":"Keuken", "Marinthe":"Vuilnis(zie Dar)"}
+huisgenoten = ["Roland","Thomas","Daan"]
+wekelijkseTaken = ["Keuken","Toilet en Douche"]
+maandelijkseTaken = ["Vloer gang en keuken"]
 
 
 csvfile = open('huisrooster2.csv', 'wb')
@@ -18,12 +17,6 @@ spamwriter = csv.writer(csvfile, delimiter=',')
     
 def getHuisgenootVoorTaak(taak, huisgenoten):
     huisgenoot = huisgenoten[0]
-    if taak=="Keuken" and huisgenoot == "Marinthe":
-        return (huisgenoten[1],1)
-    if taak=="Vuilnis(zie Dar)" and huisgenoot == "Marinthe":
-        return (huisgenoten[1],1)
-    if taak=="Vloer keuken" and huisgenoot == "Marinthe":
-        return (huisgenoten[1],1)
     return (huisgenoot,0)
 
 def saveHuisgenoot(date,beforeDate,taak,huisgenoot):
@@ -42,12 +35,12 @@ def findHuisgenootPerTaak(taken,huisgenoten, date):
 
 
 
-today = datetime.date(2015, 3, 2)
+today = datetime.date(2015, 4, 6)
 toAdd = datetime.timedelta(days=7)
 
 random.seed(1)
-for weeknummer in range(0,30):
-    amountToShuffle = 3
+for weeknummer in range(0,7):
+    amountToShuffle = 2
     
     firstpart = huisgenoten[1:1+amountToShuffle]
     random.shuffle(firstpart)
